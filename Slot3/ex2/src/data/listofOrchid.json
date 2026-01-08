@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "orchidName": "Orchid Beautiful 1",
+    "description": "Orchid Beautiful is a stunning variety of orchid known for its vibrant colors and intricate patterns. It thrives in tropical climates.",
+    "category": "Tropical",
+    "price": 29.99,
+    "isSpecial": true,
+    "image": "assets/lan1.jpg"
+  },
+  {
+    "id": "2",
+    "orchidName": "Orchid Beautiful 2",
+    "description": "This orchid is often used in floral arrangements and as a decorative plant in homes and gardens. Its unique appearance makes it a favorite.",
+    "category": "Tropical",
+    "price": 35.5,
+    "isSpecial": false,
+    "image": "assets/lan2.jpg"
+  },
+  {
+    "id": "3",
+    "orchidName": "Orchid Beautiful 3",
+    "description": "A favorite among orchid enthusiasts and collectors. It requires specific care to maintain its beauty over time.",
+    "category": "Tropical",
+    "price": 40.0,
+    "isSpecial": false,
+    "image": "assets/lan3.jpg"
+  },
+  {
+    "id": "4",
+    "orchidName": "Orchid Beautiful 4",
+    "description": "A favorite among orchid enthusiasts and collectors. It requires specific care to maintain its beauty over time.",
+    "category": "Tropical",
+    "price": 40.0,
+    "isSpecial": false,
+    "image": "assets/lan3.jpg"
+  }
+]
