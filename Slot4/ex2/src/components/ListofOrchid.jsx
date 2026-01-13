@@ -3,7 +3,7 @@ import { listofOrchids } from "../data/ListofOrchid";
 import Orchid from "./Orchids";
 import FilterSort from "./FilterSort";
 import { useState } from "react";
-import Headers from "./Header";
+import SearchBar from "./SearchBar";
 
 export default function ListofOrchid() {
   const categories = [
@@ -11,6 +11,7 @@ export default function ListofOrchid() {
   ];
   const [filteredOrchids, setFilteredOrchids] = useState(listofOrchids);
   const [sortOrder, setSortOrder] = useState("asc");
+  const [search, setSearch] = useState("");
 
   const handleFilterChange = (category) => {
     if (category === "") {
@@ -36,10 +37,7 @@ export default function ListofOrchid() {
   };
 
   const handleSearchChange = (query) => {
-    const searched = listofOrchids.filter((orchid) =>
-      orchid.orchidName.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredOrchids(searched);
+    setSearch(query);
   };
 
   return (
@@ -50,7 +48,6 @@ export default function ListofOrchid() {
       >
         Orchid Collection
       </h2>
-
       <FilterSort
         categories={categories}
         onFilterChange={handleFilterChange}

@@ -1,6 +1,6 @@
 import { Form } from "react-bootstrap";
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, value = "" }) {
   return (
     <Form className="d-flex ms-auto" style={{ maxWidth: "200px" }}>
       <Form.Control

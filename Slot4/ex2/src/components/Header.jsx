@@ -2,9 +2,15 @@ import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { navbar } from "../data/Navbar";
 import SearchBar from "./SearchBar";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
-export default function Header({ onSearch }) {
+export default function Header() {
   const location = useLocation();
+  const [searchQuery, setSearchQuery] = useState([]);
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
 
   const getContent = () => {
     switch (location.pathname) {
@@ -59,7 +65,7 @@ export default function Header({ onSearch }) {
             </Nav>
 
             <div className="d-flex align-items-center gap-2 w-50">
-              <SearchBar onSearch={onSearch} />
+              <SearchBar onSearch={handleSearch} value={searchQuery} />
             </div>
           </Navbar.Collapse>
         </Container>

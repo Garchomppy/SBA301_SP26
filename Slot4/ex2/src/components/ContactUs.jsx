@@ -160,7 +160,6 @@ export default function Contact() {
               </Card.Body>
             </Card>
           </Col>
-
           <Col lg={4}>
             <div className="d-flex flex-column gap-4">
               <h2 className="fw-bold mb-2">Get in touch</h2>
