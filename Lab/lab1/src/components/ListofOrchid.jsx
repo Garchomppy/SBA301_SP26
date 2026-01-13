@@ -4,7 +4,7 @@ import Orchid from "./Orchid";
 
 export default function ListofOrchid() {
   return (
-    <Container className="py-5">
+    <Container className="py-5">   
       <h2
         className="mb-4 text-center fw-bold text-uppercase"
         style={{ color: "#2c3e50" }}
