@@ -1,9 +1,5 @@
 import { useReducer } from "react";
-import {
-  LoginContext,
-  loginReducer,
-  initialState,
-} from "./login/loginReducer.js";
+import { LoginContext, loginReducer, initialState } from "./loginReducer.js";
 
 export const LoginProvider = ({ children }) => {
   const [state, dispatch] = useReducer(loginReducer, initialState);

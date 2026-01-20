@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import RoutesConfig from "./Routes";
-import { LoginProvider } from "./store/LoginProvider";
+import { LoginProvider } from "./store/login/LoginProvider";
 
 function App() {
   return (

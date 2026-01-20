@@ -1,6 +1,4 @@
-import { useContext, useReducer, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { LoginContext } from "../../store/login/loginReducer.js";
+import { useLogin } from "../../hooks/useLogin";
 import {
   Container,
   Form,
@@ -9,51 +7,16 @@ import {
   Card,
   InputGroup,
 } from "react-bootstrap";
-import { users } from "../../data/userData.js";
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [validated, setValidated] = useState(false); // Trạng thái kiểm tra form
-  const navigate = useNavigate();
-
-  const [state, dispatch] = useContext(LoginContext);
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setError("");
-
-    // Kiểm tra tính hợp lệ của Bootstrap
-    const form = e.currentTarget;
-    if (
-      form.checkValidity() === false ||
-      !username.trim() ||
-      !password.trim()
-    ) {
-      e.stopPropagation();
-      setValidated(true);
-      return;
-    }
-
-    const user = users.find(
-      (u) =>
-        u.username === username &&
-        u.password === password &&
-        u.role === "admin",
-    );
-
-    if (user) {
-      dispatch({ type: "LOGIN_SUCCESS", payload: user });
-      navigate("/");
-    } else {
-      dispatch({
-        type: "LOGIN_FAILURE",
-        payload: "Tên đăng nhập hoặc mật khẩu không chính xác.",
-      });
-      setValidated(false); // Reset validation để hiện thông báo lỗi hệ thống
-    }
-  };
+  const {
+    username,
+    setUsername,
+    password,
+    setPassword,
+    validated,
+    handleLogin,
+  } = useLogin();
 
   return (
     <div
@@ -79,7 +42,6 @@ function Login() {
                   <i className="bi bi-person-circle">👤</i>
                 </div>
                 <h2 className="fw-bold text-dark">Welcome Back</h2>
-                <p className="text-muted small">Đăng nhập quyền Admin</p>
               </div>
 
               {/* Thông báo lỗi khi sai tài khoản/mật khẩu */}
