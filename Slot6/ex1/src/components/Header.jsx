@@ -1,15 +1,11 @@
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { navbar } from "../data/Navbar";
 import SearchBar from "./SearchBar";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Couresel from "./Couresel";
-import { useContext } from "react";
-import { LoginContext } from "../store/login/loginReducer.js";
 
 export default function Header({ searchQuery, onSearch }) {
   const location = useLocation();
-  const navigate = useNavigate();
-  const [state, dispatch] = useContext(LoginContext);
 
   const getContent = () => {
     switch (location.pathname) {
@@ -66,29 +62,6 @@ export default function Header({ searchQuery, onSearch }) {
 
             <div className="d-flex align-items-center gap-2 w-50">
               <SearchBar onSearch={onSearch} value={searchQuery} />
-              {state.isAuthenticated ? (
-                <div className="d-flex align-items-center gap-2">
-                  <span className="text-white">
-                    Xin chào, {state.user?.username}
-                  </span>
-                  <Button
-                    variant="outline-light"
-                    onClick={() => {
-                      dispatch({ type: "LOGOUT" });
-                      navigate("/login");
-                    }}
-                  >
-                    Đăng xuất
-                  </Button>
-                </div>
-              ) : (
-                <Button
-                  variant="outline-light"
-                  onClick={() => navigate("/login")}
-                >
-                  Đăng nhập
-                </Button>
-              )}
             </div>
           </Navbar.Collapse>
         </Container>

@@ -5,8 +5,7 @@ import Home from "./components/Home";
 import MainLayout from "./components/MainLayout";
 import { useState } from "react";
 import OrchidDetails from "./components/OrchidDetails";
-import Login from "./pages/login/Login";
-import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./components/Login";
 
 export default function RoutesConfig() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,9 +19,7 @@ export default function RoutesConfig() {
       <Route path="/login" element={<Login />} />
       <Route
         element={
-          <ProtectedRoute>
-            <MainLayout onSearch={handleSearch} searchQuery={searchQuery} />
-          </ProtectedRoute>
+          <MainLayout onSearch={handleSearch} searchQuery={searchQuery} />
         }
       >
         <Route path="/" element={<Home searchQuery={searchQuery} />} />
