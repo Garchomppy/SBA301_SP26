@@ -9,32 +9,29 @@ export default function Orchid({
   description,
   price,
   isSpecial = false,
+  onEdit,
+  onDelete,
 }) {
+  // Handle image source - check if it's stored in localStorage
+  const getImageSrc = () => {
+    if (image && image.startsWith("./assets/")) {
+      const fileName = image.replace("./assets/", "");
+      const storedImage = localStorage.getItem(`image${fileName}`);
+      return storedImage || image;
+    }
+    return image;
+  };
+
   return (
     <>
       <Card className="h-100 shadow-sm">
         <div style={{ position: "relative" }}>
-          {image ? (
-            <Card.Img
-              variant="top"
-              style={{ height: "200px", objectFit: "cover" }}
-              src={image}
-              alt={orchidName}
-            />
-          ) : (
-            <div
-              style={{
-                height: "200px",
-                backgroundColor: "#f8f9fa",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#6c757d",
-              }}
-            >
-              No Image
-            </div>
-          )}
+          <Card.Img
+            variant="top"
+            style={{ height: "200px", objectFit: "cover" }}
+            src={getImageSrc()}
+            alt={orchidName}
+          />
           {isSpecial && (
             <Badge
               bg="info"
@@ -66,11 +63,22 @@ export default function Orchid({
           <p>
             <strong>Price:</strong> ${price}
           </p>
-          <Link to={`/orchid/${id}`} style={{ textDecoration: "none" }}>
-            <Button variant="primary" className="mt-auto w-100">
-              View Details
+          <div className="d-flex gap-2 mt-auto">
+            <Link
+              to={`/orchid/${id}`}
+              style={{ textDecoration: "none", flex: 1 }}
+            >
+              <Button variant="primary" className="w-100">
+                View Details
+              </Button>
+            </Link>
+            <Button variant="warning" onClick={() => onEdit(id)}>
+              Edit
             </Button>
-          </Link>
+            <Button variant="danger" onClick={() => onDelete(id)}>
+              Delete
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </>
