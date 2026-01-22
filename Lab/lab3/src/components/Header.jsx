@@ -1,7 +1,7 @@
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { navbar } from "../data/Navbar";
 import SearchBar from "./SearchBar";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Couresel from "./Couresel";
 import { useContext } from "react";
 import { LoginContext } from "../store/login/loginReducer.js";
@@ -22,6 +22,11 @@ export default function Header({ searchQuery, onSearch }) {
         return {
           title: "Về Chúng Tôi",
           desc: "Câu chuyện về niềm đam mê hoa lan.",
+        };
+      case "/dashboard":
+        return {
+          title: "Bảng Điều Khiển",
+          desc: "Quản lý cửa hàng hoa lan của bạn một cách hiệu quả.",
         };
       default:
         return {
@@ -44,7 +49,7 @@ export default function Header({ searchQuery, onSearch }) {
         className="shadow-sm py-3"
       >
         <Container>
-          <Navbar.Brand href="/home" className="fw-bold fs-3">
+          <Navbar.Brand as={Link} to="/home" className="fw-bold fs-3">
             <span className="text-primary">Orchid</span>Studio
           </Navbar.Brand>
 
@@ -55,7 +60,8 @@ export default function Header({ searchQuery, onSearch }) {
               {navbar.map((link, index) => (
                 <Nav.Link
                   key={index}
-                  href={link.path}
+                  as={Link}
+                  to={link.path}
                   className="px-3 text-uppercase fw-semibold"
                   style={{ fontSize: "0.9rem", letterSpacing: "1px" }}
                 >

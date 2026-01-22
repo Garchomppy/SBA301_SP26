@@ -7,6 +7,7 @@ import Login from "./pages/login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
 import MainLayout from "./components/MainLayout";
+import DashboardOrchids from "./features/orchid/DashBoard";
 
 export default function RoutesConfig() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,6 +30,7 @@ export default function RoutesConfig() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/orchid/:id" element={<OrchidDetails />} />
+        <Route path="/dashboard" element={<DashboardOrchids />} />
       </Route>
     </Routes>
   );

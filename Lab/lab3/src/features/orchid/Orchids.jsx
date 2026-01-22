@@ -9,8 +9,6 @@ export default function Orchid({
   description,
   price,
   isSpecial = false,
-  onEdit,
-  onDelete,
 }) {
   // Handle image source - check if it's stored in localStorage
   const getImageSrc = () => {
@@ -72,12 +70,6 @@ export default function Orchid({
                 View Details
               </Button>
             </Link>
-            <Button variant="warning" onClick={() => onEdit(id)}>
-              Edit
-            </Button>
-            <Button variant="danger" onClick={() => onDelete(id)}>
-              Delete
-            </Button>
           </div>
         </Card.Body>
       </Card>
