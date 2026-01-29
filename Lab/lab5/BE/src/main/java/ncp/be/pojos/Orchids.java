@@ -1,6 +1,5 @@
-package ncp.lab4_new.pojos;
+package ncp.be.pojos;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
@@ -22,7 +21,7 @@ public class Orchids implements Serializable {
     private String orchidName;
 
     @Column(name = "is_natural", columnDefinition = "bit default 0")
-    private boolean isNatural;
+    private Boolean isNatural;
 
     @Column(name = "orchid_description", columnDefinition = "nvarchar(MAX)")
     private String orchidDescription;
@@ -31,7 +30,7 @@ public class Orchids implements Serializable {
     private String orchidCategory;
 
     @Column(name = "is_attractive", columnDefinition = "bit default 0")
-    private boolean isAttractive;
+    private Boolean isAttractive;
 
     @Column(name = "orchid_url", length = 1000)
     private String orchidURL;

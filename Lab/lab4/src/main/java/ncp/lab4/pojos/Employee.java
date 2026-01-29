@@ -12,8 +12,10 @@ import lombok.*;
 public class Employee {
     @Id
     private String empId;
-
+    @Id
     private String name;
+    @Id
     private String designation;
+    @Id
     private double salary;
 }
