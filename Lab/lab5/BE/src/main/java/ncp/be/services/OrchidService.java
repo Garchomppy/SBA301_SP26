@@ -31,7 +31,7 @@ public class OrchidService implements IOrchidService {
             o.setOrchidName(orchids.getOrchidName());
             o.setOrchidDescription(orchids.getOrchidDescription());
         }
-        return null;
+        return orchidRepository.save(o);
     }
 
     @Override
