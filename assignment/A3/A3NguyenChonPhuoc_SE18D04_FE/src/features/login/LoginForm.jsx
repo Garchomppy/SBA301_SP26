@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import "./Auth.css";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -108,91 +109,97 @@ const LoginForm = () => {
     }
   };
 
-  const inputStyle = (fieldError) => ({
-    width: "100%",
-    padding: "8px",
-    margin: "8px 0",
-    boxSizing: "border-box",
-    border: fieldError ? "2px solid #dc3545" : "1px solid #ddd",
-    borderRadius: "4px",
-    backgroundColor: fieldError ? "#fff5f5" : "#fff",
-  });
-
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "50px auto",
-        padding: "20px",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-      }}
-    >
-      <h2>Đăng nhập</h2>
-      {error && <p style={{ color: "#dc3545", margin: "10px 0" }}>{error}</p>}
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <br />
-          <input
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-            style={inputStyle(errors.email)}
-            placeholder="Nhập email"
-          />
-          {errors.email && (
-            <p style={{ color: "#dc3545", fontSize: "12px", margin: "4px 0" }}>
-              {errors.email}
-            </p>
-          )}
+    <div className="auth-page-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h2 className="auth-title">Chào mừng trở lại</h2>
+          <p className="auth-subtitle">
+            Đăng nhập để quản lý và trải nghiệm dịch vụ
+          </p>
         </div>
 
-        <div>
-          <label>Mật khẩu:</label>
-          <br />
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            style={inputStyle(errors.password)}
-            placeholder="Nhập mật khẩu"
-          />
-          {errors.password && (
-            <p style={{ color: "#dc3545", fontSize: "12px", margin: "4px 0" }}>
-              {errors.password}
-            </p>
-          )}
+        {error && <div className="auth-alert error">{error}</div>}
+
+        <form onSubmit={handleSubmit}>
+          <div className="auth-form-group">
+            <label className="auth-label">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              className={`auth-input ${errors.email ? "error" : ""}`}
+              placeholder="Nhập email của bạn"
+            />
+            {errors.email && (
+              <p className="auth-error-text">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                {errors.email}
+              </p>
+            )}
+          </div>
+
+          <div className="auth-form-group">
+            <label className="auth-label">Mật khẩu</label>
+            <input
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+              className={`auth-input ${errors.password ? "error" : ""}`}
+              placeholder="Nhập mật khẩu"
+            />
+            {errors.password && (
+              <p className="auth-error-text">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                {errors.password}
+              </p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading || !isFormValid()}
+            className="auth-button"
+          >
+            {loading ? "Đang xử lý..." : "Đăng nhập"}
+          </button>
+        </form>
+
+        <div className="auth-footer">
+          Chưa có tài khoản?{" "}
+          <a href="/register" className="auth-link">
+            Đăng ký ngay
+          </a>
         </div>
-
-        <button
-          type="submit"
-          disabled={loading || !isFormValid()}
-          style={{
-            padding: "10px 20px",
-            background: isFormValid() && !loading ? "#007bff" : "#ccc",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: isFormValid() && !loading ? "pointer" : "not-allowed",
-            width: "100%",
-            marginTop: "10px",
-          }}
-        >
-          {loading ? "Đang đăng nhập..." : "Đăng nhập"}
-        </button>
-      </form>
-
-      <p style={{ textAlign: "center", marginTop: "15px" }}>
-        Chưa có tài khoản?{" "}
-        <a
-          href="/register"
-          style={{ color: "#28a745", textDecoration: "none" }}
-        >
-          Đăng ký
-        </a>
-      </p>
+      </div>
     </div>
   );
 };
