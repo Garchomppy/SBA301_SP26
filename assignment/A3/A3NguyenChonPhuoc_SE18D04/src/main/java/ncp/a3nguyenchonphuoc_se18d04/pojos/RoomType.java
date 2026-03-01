@@ -1,4 +1,4 @@
-package ncp.a3nguyenchonphuoc_se18d04.pojos.enums;
+package ncp.a3nguyenchonphuoc_se18d04.pojos;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,5 +27,5 @@ public class RoomType {
     @Column(nullable = false)
     private Double pricePerNight;
 
-    private String imageUrl;           
+    private String imageUrl;
 }
