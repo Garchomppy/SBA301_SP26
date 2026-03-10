@@ -1,4 +1,16 @@
 package ncp.lab8.services;
 
-public interface IStudentServices {
+import ncp.lab8.pojos.Student;
+
+import java.util.List;
+
+public interface IStudentService {
+
+    void save(Student student);
+
+    void delete(Student student);
+
+    List<Student> findAll();
+
+    Student findByEmail(String email);
 }
